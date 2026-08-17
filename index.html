@@ -139,6 +139,7 @@
     width:100%;height:100%;
     object-fit:cover;
     display:block;
+    opacity:.75;
     -webkit-mask-image:radial-gradient(ellipse 68% 70% at 50% 45%, black 40%, transparent 97%);
     mask-image:radial-gradient(ellipse 68% 70% at 50% 45%, black 40%, transparent 97%);
   }
@@ -409,16 +410,15 @@
    ══════════════════════════════════════════════════════════════ */
 const REQUIRE_PASSWORD = false;                // flip to true when you want the gate
 const COUNCIL_PASSWORD = "137942";             // numeric string — change it
-const AGENT_ENDPOINT   = "https://quigon.thill5523.workers.dev/";        // your Cloudflare Worker URL
+const AGENT_ENDPOINT   = "/api/quigon";        // your Cloudflare Worker URL
 const AGENT_PROMPT_URL = "XAXIMUS.md";         // the agent's soul, editable .md
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA04TJr_Pd14wL-Jh41v65Iifr1v_4oY-k",
-  authDomain: "council-49a9b.firebaseapp.com",
-  projectId: "council-49a9b",
-  storageBucket: "council-49a9b.firebasestorage.app",
-  messagingSenderId: "755624084775",
-  appId: "1:755624084775:web:bb48b01a8d5454b70dd502",
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  appId: "YOUR_APP_ID"
 };
 /* ══════════════════════════════════════════════════════════════ */
 
@@ -515,9 +515,7 @@ function renderMessage(m) {
   who.textContent = m.from === "xaximus" ? "Xaximus" : (m.name || "Anon");
   const text = document.createElement("div");
   text.className = "text";
-  text.textContent = (m.from === "xaximus")
-    ? m.text.replace(/([.!?\u2026])\s+/g, "$1\n")   // one sentence per line, like verse
-    : m.text;
+  text.textContent = m.text;
   div.append(who, text);
   scroll.appendChild(div);
   scroll.scrollTop = scroll.scrollHeight;
