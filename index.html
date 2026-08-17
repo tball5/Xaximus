@@ -120,7 +120,6 @@
   .arch{
     position:relative;
     width:min(430px,92vw);
-    aspect-ratio:4/3.2;
   }
   .arch::before{
     content:"";
@@ -136,9 +135,7 @@
   @media (prefers-reduced-motion:reduce){.arch::before{animation:none}}
   .arch img{
     position:relative;
-    width:100%;height:100%;
-    object-fit:cover;
-    object-position:50% 10%;   /* anchor near the top so the head is never cropped */
+    width:100%;height:auto;    /* full image, its own proportions — never cropped */
     display:block;
     opacity:.75;
     -webkit-mask-image:radial-gradient(ellipse 68% 70% at 50% 45%, black 40%, transparent 97%);
@@ -411,16 +408,15 @@
    ══════════════════════════════════════════════════════════════ */
 const REQUIRE_PASSWORD = false;                // flip to true when you want the gate
 const COUNCIL_PASSWORD = "137942";             // numeric string — change it
-const AGENT_ENDPOINT   = "https://quigon.thill5523.workers.dev/";        // your Cloudflare Worker URL
+const AGENT_ENDPOINT   = "/api/quigon";        // your Cloudflare Worker URL
 const AGENT_PROMPT_URL = "XAXIMUS.md";         // the agent's soul, editable .md
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA04TJr_Pd14wL-Jh41v65Iifr1v_4oY-k",
-  authDomain: "council-49a9b.firebaseapp.com",
-  projectId: "council-49a9b",
-  storageBucket: "council-49a9b.firebasestorage.app",
-  messagingSenderId: "755624084775",
-  appId: "1:755624084775:web:bb48b01a8d5454b70dd502",
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  appId: "YOUR_APP_ID"
 };
 /* ══════════════════════════════════════════════════════════════ */
 
